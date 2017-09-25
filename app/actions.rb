@@ -1,18 +1,17 @@
 def humanized_time_ago(time_ago_in_minutes)
     if time_ago_in_minutes >= 60
-        "#{time_ago_in_minutes /60} hours ago"
+        "#{time_ago_in_minutes / 60} hours ago"
     else
         "#{time_ago_in_minutes} minutes ago"
     end
 end
 
 get '/' do
-    post_shark = {
+   @post_shark = {
     username: "sharky_j",
     avatar_url: "http://naserca.com/images/sharky_j.jpg",
-    humanized_time_ago: humanized_time_ago(15),
     photo_url: "http://naserca.com/images/shark.jpg",
-    time_ago_in_minutes: 15,
+    humanized_time_ago: humanized_time_ago(15),
     like_count: 0,
     comment_count: 1,
     comments: [{
@@ -23,7 +22,7 @@ get '/' do
     
     
     
-    post_whale = {
+   @post_whale = {
         usename: "kirk_whalum",
         avatar_url: "http://naserca.com/images/kirk_whalum.jpg",
         photo_url: "http://naserca.com/images/whale.jpg",
@@ -36,7 +35,7 @@ get '/' do
               }]
     }
     
-post_marlin={
+@post_marlin={
     username: "marlin_peppa",
     avatar_url: "http://naserca.com/images/marlin_peppa.jpg",
     photo_url: "http://naserca.com/images/marlin.jpg",
@@ -49,7 +48,10 @@ post_marlin={
     }]
 }
 
-    [post_shark, post_whale, post_marlin].to_s
+    @posts = [@post_shark, @post_whale, @post_marlin]
+    
+    erb(:index)
+    
     end
  
         
